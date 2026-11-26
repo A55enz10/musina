@@ -1,0 +1,42 @@
+name: Bootstrap checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GRADLE_USER_HOME: ${{ github.workspace }}/.gradle-user-home
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v6.3.0
+        with:
+          distribution: corretto
+          java-version: '25.0.3'
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version-file: .node-version
+      - name: Verify Gradle Wrapper integrity
+        shell: bash
+        run: |
+          expected=$(curl --fail --silent --show-error https://services.gradle.org/distributions/gradle-9.9.2-wrapper.jar.sha256)
+          echo "$expected  gradle/wrapper/gradle-wrapper.jar" | sha256sum --check
+      - name: Local synthetic configuration
+        run: node scripts/setup-local.mjs
+      - name: Build and tests with isolated PostgreSQL
+        run: bash gradlew --no-daemon clean build --console=plain
+      - name: Start only Musina development PostgreSQL
+        run: docker compose up -d --wait postgres
+      - name: Install isolated browser
+        working-directory: frontend
+        run: npx playwright install --with-deps chromium
+      - name: Packaged application browser smoke
+        run: node scripts/smoke.mjs
+      - name: Stop Musina services
+        if: always()
+        run: docker compose down

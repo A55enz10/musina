@@ -1,0 +1,28 @@
+:root { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: #183e37; background: #f4f3ed; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.shell { max-width: 720px; margin: auto; padding: 36px 24px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 750; font-size: 27px; letter-spacing: -1px; margin-bottom: 32px; }
+.brand-mark { display: grid; place-items: center; background: #183e37; color: white; width: 38px; height: 38px; border-radius: 12px; }
+.card { background: #fff; border: 1px solid #e0e4dc; border-radius: 24px; padding: 42px; box-shadow: 0 12px 50px #183e3708; }
+.eyebrow { font-size: 11px; letter-spacing: 2px; font-weight: 750; color: #527369; }
+h1 { font-size: clamp(28px, 5vw, 40px); line-height: 1.15; letter-spacing: -1.2px; margin: 20px 0 14px; }
+h2 { font-size: 20px; margin: 26px 0 16px; }
+p { line-height: 1.6; }
+.intro { color: #52675f; margin-bottom: 32px; }
+label { display: block; font-size: 14px; font-weight: 650; margin: 18px 0 8px; }
+input { display: block; width: 100%; font: inherit; font-size: 16px; padding: 13px 14px; border: 1px solid #abbdb3; border-radius: 9px; color: #183e37; }
+button { min-height: 46px; border: 1px solid #183e37; border-radius: 9px; padding: 11px 18px; background: #183e37; color: #fff; font: inherit; font-weight: 650; cursor: pointer; }
+form button { width: 100%; margin-top: 24px; }
+button:disabled { opacity: .6; cursor: wait; }
+button.secondary { background: white; color: #183e37; }
+:focus-visible { outline: 3px solid #bc7513; outline-offset: 3px; }
+.hint, footer { font-size: 13px; color: #576c62; }
+.notice { border-radius: 10px; padding: 16px; background: #f0f3ef; }
+.success { background: #e5f3e9; color: #215236; }
+.error { background: #fff1e9; color: #71381b; }
+.error h2 { margin-top: 0; }
+.form-error { color: #9f2d25; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+footer { margin-top: 28px; text-align: center; }
+@media (max-width: 480px) { .shell { padding: 24px 16px; } .card { padding: 26px 22px; border-radius: 18px; } .actions button { width: 100%; } }

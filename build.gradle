@@ -1,0 +1,55 @@
+plugins {
+    id 'base'
+}
+
+def frontendDir = layout.projectDirectory.dir('frontend')
+def npmCommand = System.getProperty('os.name').toLowerCase().contains('windows') ? 'npm.cmd' : 'npm'
+
+tasks.register('frontendInstall', Exec) {
+    workingDir frontendDir
+    commandLine npmCommand, 'ci', '--no-audit', '--no-fund'
+    inputs.files(frontendDir.file('package.json'), frontendDir.file('package-lock.json'))
+    outputs.dir(frontendDir.dir('node_modules'))
+}
+
+tasks.register('frontendCheck', Exec) {
+    dependsOn 'frontendInstall'
+    workingDir frontendDir
+    commandLine npmCommand, 'run', 'check'
+}
+
+tasks.register('frontendBuild', Exec) {
+    dependsOn 'frontendInstall'
+    workingDir frontendDir
+    commandLine npmCommand, 'run', 'build'
+    inputs.files(fileTree('frontend/src'), fileTree('frontend/public'))
+    inputs.files(frontendDir.file('index.html'), frontendDir.file('vite.config.ts'), frontendDir.file('tsconfig.json'))
+    outputs.dir(frontendDir.dir('dist'))
+}
+
+tasks.named('check') {
+    dependsOn 'frontendCheck', ':backend:check'
+}
+tasks.named('assemble') {
+    dependsOn ':backend:bootJar'
+}
+tasks.named('clean') {
+    dependsOn ':backend:clean'
+    delete frontendDir.dir('dist')
+}
+
+tasks.register('frontendDev', Exec) {
+    dependsOn 'frontendInstall'
+    workingDir frontendDir
+    commandLine npmCommand, 'run', 'dev'
+}
+
+tasks.register('dbUp', Exec) {
+    workingDir rootDir
+    commandLine 'docker', 'compose', 'up', '-d', '--wait', 'postgres'
+}
+
+tasks.named('wrapper') {
+    gradleVersion = '9.9.2'
+    distributionType = Wrapper.DistributionType.BIN
+}

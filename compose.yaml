@@ -1,0 +1,19 @@
+name: musina
+services:
+  postgres:
+    image: postgres:18.7
+    environment:
+      POSTGRES_DB: ${MUSINA_DB_NAME:-musina_dev}
+      POSTGRES_USER: ${MUSINA_DB_USER:-musina_dev}
+      POSTGRES_PASSWORD: ${MUSINA_DB_PASSWORD:?Eseguire scripts/setup-local.ps1 o creare .env}
+    ports:
+      - "127.0.0.1:${MUSINA_DB_PORT:-15432}:5432"
+    volumes:
+      - musina_pgdata:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+volumes:
+  musina_pgdata:

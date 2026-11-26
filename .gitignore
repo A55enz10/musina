@@ -1,0 +1,57 @@
+# IntelliJ locale; le configurazioni condivise useranno .run/
+/.idea/
+*.iml
+
+# Output e cache
+**/.gradle/
+**/build/
+**/out/
+**/node_modules/
+**/dist/
+**/coverage/
+**/playwright-report/
+**/test-results/
+/.gradle-user-home/
+/.tools/
+*.tsbuildinfo
+*.log
+
+# Segreti e override locali
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.local
+*.local.*
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Dati bancari, backup e volumi: mai nel repository
+/private-data/
+/docs/examples/
+/imports/
+/backups/
+/data/
+/volumes/
+*.xlsx
+*.xls
+*.ofx
+*.qif
+*.csv
+*.pdf
+*.dump
+*.backup
+
+# In futuro ammettere soltanto fixture revisionate e sintetiche/anonimizzate
+!**/src/test/resources/fixtures/**/
+!**/src/test/resources/fixtures/**/*.xlsx
+!**/src/test/resources/fixtures/**/*.csv
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Il Gradle Wrapper dovrà essere versionato, incluso gradle-wrapper.jar
