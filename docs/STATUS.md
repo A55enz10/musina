@@ -11,10 +11,12 @@ Aggiornato al **27 novembre 2026**. Incremento 1 completato e verificato su Wind
 
 ## Blocchi e limiti
 
+Prima CI remota fallita nel setup di Corretto sul commit `d0f7e40`. Correzione implementata: selettore Java `25` e cleanup condizionato alla presenza di `.env` (provato localmente con Docker simulato, con e senza `.env`). Pubblicazione su master autorizzata; nuova esecuzione remota da verificare.
+
 Nessun impedimento attuale alla build Windows. Il PATH punta a Java 8: selezionare JDK 25 in IntelliJ/Gradle, oppure usare lo script di sessione indicato nel README. Docker Desktop è stato avviato.
 
 Click delle configurazioni IntelliJ non automatizzato; eseguiti i task corrispondenti da CLI. CI remota e portabilità Linux non verificate in questa sessione. Nessuna esposizione LAN/Internet o installazione Qwen.
 
 ## Prossimo passo
 
-Avviare il bootstrap da IntelliJ seguendo il README. Per iniziare l'incremento 2 serve un nuovo incarico; i tracciati bancari e i quattro punti differiti restano nel backlog. Nessun lavoro applicativo oltre l'incremento 1 autorizzato.
+Verificare su GitHub Actions la nuova esecuzione della correzione CI. Avviare il bootstrap da IntelliJ seguendo il README. Per iniziare l'incremento 2 serve un nuovo incarico; i tracciati bancari e i quattro punti differiti restano nel backlog. Nessun lavoro applicativo oltre l'incremento 1 autorizzato.

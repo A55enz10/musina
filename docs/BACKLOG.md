@@ -6,6 +6,8 @@ Ogni incremento richiede branch dedicato, ambito circoscritto e aggiornamento di
 
 ## 1. Bootstrap eseguibile
 
+**Correzione CI:** prima esecuzione remota fallita durante il setup Corretto. Selettore corretto a `25`; cleanup protetto quando `.env` non esiste. Pubblicazione su master autorizzata; accettazione della correzione subordinata alla nuova pipeline completa verde.
+
 **Stato:** completato e verificato su Windows: 8 test backend, 4 frontend, smoke browser del JAR e del proxy di sviluppo, build da copia pulita dei sorgenti con dipendenze bloccate. **Dipendenze:** autorizzazione ricevuta; JDK 25, Node e Docker disponibili, versioni verificate su registri ufficiali e nella build; nessun campione bancario necessario. [Evidenze e limiti](verification/bootstrap.md): CI remota/Linux e click IntelliJ non verificati, configurazioni condivise presenti e task corrispondenti provati da CLI.
 
 **Risultato:** un utente accede e vede una pagina italiana che verifica il collegamento al backend; sviluppo e build riproducibili. Incarico operativo in [BOOTSTRAP_TASK.md](BOOTSTRAP_TASK.md).
