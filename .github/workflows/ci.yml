@@ -24,7 +24,7 @@ jobs:
       - name: Verify Gradle Wrapper integrity
         shell: bash
         run: |
-          expected=$(curl --fail --silent --show-error https://services.gradle.org/distributions/gradle-9.9.2-wrapper.jar.sha256)
+          expected=$(curl --fail --location --silent --show-error https://services.gradle.org/distributions/gradle-9.9.2-wrapper.jar.sha256)
           echo "$expected  gradle/wrapper/gradle-wrapper.jar" | sha256sum --check
       - name: Local synthetic configuration
         run: node scripts/setup-local.mjs

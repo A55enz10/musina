@@ -11,7 +11,7 @@ Aggiornato al **27 novembre 2026**. Incremento 1 completato e verificato su Wind
 
 ## Blocchi e limiti
 
-Prima CI remota fallita nel setup di Corretto sul commit `d0f7e40`. Correzione implementata: selettore Java `25` e cleanup condizionato alla presenza di `.env` (provato localmente con Docker simulato, con e senza `.env`). Pubblicazione su master autorizzata; nuova esecuzione remota da verificare.
+Prima CI remota fallita nel setup di Corretto sul commit `d0f7e40`. Correzione implementata: selettore Java `25` e cleanup condizionato alla presenza di `.env` (provato localmente con Docker simulato, con e senza `.env`). Pubblicata la correzione su master (`9904a6e`): setup Java e cleanup superati in remoto. La pipeline si ferma al checksum del Wrapper: il servizio Gradle risponde HTTP 301 e curl non seguiva il reindirizzamento. Aggiunta opzione `--location`; nuova esecuzione da verificare.
 
 Nessun impedimento attuale alla build Windows. Il PATH punta a Java 8: selezionare JDK 25 in IntelliJ/Gradle, oppure usare lo script di sessione indicato nel README. Docker Desktop è stato avviato.
 
